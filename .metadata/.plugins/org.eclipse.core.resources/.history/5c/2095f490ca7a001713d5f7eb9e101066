@@ -1,0 +1,22 @@
+package code;
+
+public class MaxDifference {
+	public int computeCapacity(int arr[]) {
+		int capacity = 0, current = arr[0];
+		for (int i = 1; i < arr.length; i++){
+			if (current < arr[i]) {
+				capacity -= (arr[i] - current);
+			}
+			else
+			{
+				capacity += (arr[i] - current);
+			}
+			current = arr[i];
+		}
+		if (capacity == 0 && arr[1] > arr[0])
+		{
+			capacity = arr[1] - arr[0];
+		}
+		return (capacity > 0) ? capacity : 0 - capacity;
+	}
+}

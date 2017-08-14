@@ -1,0 +1,13 @@
+
+public class SCencoding {
+	
+	public int convert(String s) {
+		int result = 0;
+		int power = 1;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			result += power * ((int)s.charAt(i) - 65);
+			power *= 26;
+		}
+		return result;
+	}
+}

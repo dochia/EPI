@@ -1,0 +1,14 @@
+package linked;
+
+public class LinkedListsMain {
+
+	public static void main(String[] args) {
+		
+		LinkedList list = new LinkedList();
+		System.out.println(list.add(12));
+		System.out.println(list.add(3));
+		System.out.println(list.add(14));
+		list.printAll();
+	}
+
+}

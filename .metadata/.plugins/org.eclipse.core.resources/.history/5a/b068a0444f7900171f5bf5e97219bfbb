@@ -1,0 +1,65 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class HelloWorld {
+
+	private static final Map<Character, Integer> digits;
+	static {
+		digits = new HashMap<Character, Integer>();
+		digits.put('0', 0);
+		digits.put('1', 1);
+		digits.put('2', 2);
+		digits.put('3', 3);
+		digits.put('4', 4);
+		digits.put('5', 5);
+		digits.put('6', 6);
+		digits.put('7', 7);
+		digits.put('8', 8);
+		digits.put('9', 9);
+		digits.put('A', 10);
+		digits.put('B', 11);
+		digits.put('C', 12);
+		digits.put('D', 13);
+		digits.put('E', 14);
+		digits.put('F', 15);
+		
+	}
+	
+	static String convertIntegerToBase10(String s, int base) {
+		int power = 1, value = 0;
+		for (int i = s.length() - 1; i >= 0; i--) {
+			value += power * digits.get(s.charAt(i));
+			power *= base;
+		}
+		return Integer.toString(value);
+	}
+	
+	static String convertIntegerFromBase10(String s, int base)
+	{
+		String result = "";
+		int value = Integer.parseInt(s);
+		while (value > 0) {
+			result = String.valueOf(value % base) + result;
+			value /= base;
+		}
+		return result;
+	}
+	static String convertIntegerToBase(String s, int base, int target) {
+		String result = "";
+		result = convertIntegerToBase10(s, base);
+		if (target == 10) {
+			return result;
+		}
+		else {
+			
+			result = convertIntegerFromBase10(result, target);
+		}
+		return result;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(convertIntegerToBase("236", 8, 10));
+		System.out.println(convertIntegerFromBase10("158", 8));
+		System.out.println("Hello world!");
+	}
+}

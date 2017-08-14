@@ -1,0 +1,16 @@
+package testing;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+
+public class TestColumn1 {
+
+	@Test
+	public final void testConvert() {
+		code.SCencoding test = new code.SCencoding();
+		assertTrue("A is 1", test.convert("A") == 1);
+		//fail("Not yet implemented"); // TODO
+	}
+
+}

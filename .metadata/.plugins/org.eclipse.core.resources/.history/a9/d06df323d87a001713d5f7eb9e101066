@@ -1,0 +1,39 @@
+package code;
+
+import java.lang.IllegalArgumentException;
+import java.util.Vector;
+
+public class BigInteger {
+	private int sign = 1;
+	Vector<Character> digits;
+	
+	
+	public BigInteger(String s) throws IllegalArgumentException, NullPointerException {
+		if (s == "") {
+			throw new NullPointerException("The supplied string is empty");
+		}
+		int start = 0;
+		if (s.charAt(0) == '-') {
+			sign = -1;
+			start = 1;
+		}
+		
+		for (int i = start; i < s.length(); i++) {
+			Character c = s.charAt(i);
+			if (c >= 48 && c <= 57) {
+				digits.add(s.charAt(i));
+			}
+			else
+				throw new IllegalArgumentException("The string contains illegal characters - different than digits");
+		}
+	}
+	
+	public void print() {
+		String result = "Big Integer is ";
+		result += (sign == 1) ? "+" : "-";
+		for (int i = 0; i < digits.size(); i++) {
+			result += digits.get(i);
+		}
+		System.out.println(result);
+	}
+}

@@ -1,0 +1,75 @@
+package code;
+
+import java.lang.IllegalArgumentException;
+import java.util.Vector;
+
+public class BigInteger {
+	private int sign = 1;
+	Vector<Character> digits;
+	boolean isEmpty = true;
+	
+	
+	public BigInteger(String s) throws IllegalArgumentException  {
+		digits = new Vector<Character>();
+		if (s != "") {
+			isEmpty =false;
+			int start = 0;
+			if (s.charAt(0) == '-') {
+				sign = -1;
+				start = 1;
+			}
+			
+			for (int i = start; i < s.length(); i++) {
+				Character c = s.charAt(i);
+				if (c >= 48 && c <= 57) {
+					digits.add(s.charAt(i));
+				}
+				else
+					throw new IllegalArgumentException("The string contains illegal characters - different than digits");
+			}
+		}
+		
+	}
+	
+	public void print() {
+		String result = "Big Integer is ";
+		result += (sign == 1) ? "+" : "-";
+		for (int i = 0; i < digits.size(); i++) {
+			result += digits.get(i);
+		}
+		System.out.println(result);
+	}
+	
+	public BigInteger multiplyByInt(int a) {
+		BigInteger result = new BigInteger("");
+		int carry = 0;
+		int i = this.digits.size() - 1;
+		while (i >= 0) {
+			carry = (int)(digits.get(i) - 48) * a;
+			result.digits.add(0, (char) (carry % 10 + 48));
+			carry = carry / 10;
+		}
+		if (carry != 0) {
+			result.digits.add(0, (char)(carry + 48));
+		}
+		return result;
+	}
+	
+	public BigInteger multiply(BigInteger a) {
+		BigInteger result = new BigInteger("");
+		Vector<BigInteger> vResult = new Vector<BigInteger>();
+		for (int i = 0; i < a.digits.size(); i++)
+		{
+			vResult.add(this.multiplyByInt((int)(a.digits.get(i) - 48)));
+		}
+		
+		return result;
+	}
+	
+	public BigInteger add(BigInteger a) {
+		BigInteger result = new BigInteger("");
+		
+		return result;
+	}
+	
+}

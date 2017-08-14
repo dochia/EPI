@@ -1,0 +1,16 @@
+package code;
+
+
+public class MultiplicationMain {
+
+	public static void main(String[] args) {
+		try {
+			Multiplication m = new Multiplication("123", "-1234");
+			m.compute().print();
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}

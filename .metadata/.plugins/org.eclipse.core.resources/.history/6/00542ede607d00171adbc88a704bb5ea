@@ -1,0 +1,100 @@
+package test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import linked.LinkedList;
+
+public class LinkedListTest {
+
+	private LinkedList setNoCycles() {
+		LinkedList test = new LinkedList();
+		test.add(10);
+		test.add(12);
+		test.add(20);
+		test.add(22);
+		return test;
+	}
+	@Test
+	public final void testAdd() {
+		LinkedList test = setNoCycles();
+		assertTrue(test.size() == 4);
+		test.add(15);
+		assertTrue(test.size() == 5);
+		assertEquals(test.printAll(), "The list contains the following values: 10->12->20->22->15.");
+		assertTrue(test.getLast().printData() == "The node contains 15.");
+		
+	}
+
+	@Test
+	public final void testAddFirst() {
+		LinkedList test = new LinkedList();
+		assertTrue(test.size() == 0);
+		test.addFirst(5);
+		assertTrue(test.printAll() == "The list contains the following values: 5.");
+		test.add(12);
+		assertTrue(test.printAll() == "The list contains the following values: 5->12.");
+		test.addFirst(29);
+		assertTrue(test.printAll() == "The list contains the following values: 29->5->12.");
+		
+	}
+
+	@Test
+	public final void testPrintAll() {
+		LinkedList test = setNoCycles();
+		assertTrue(test.printAll() == "The list contains the following values: 10->12->20->22.");
+	}
+
+	@Test
+	public final void testGetFirst() {
+		LinkedList test = setNoCycles();
+		assertTrue(test.getFirst().printData() == "The node contains 10.");
+	}
+
+	@Test
+	public final void testGet() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testGetLast() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testRemoveFirst() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testIsCyclic() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testFindCycle() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testSize() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testAreOverlappingNoCycles() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testAreOverlapping() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	public final void testRemove() {
+		fail("Not yet implemented"); // TODO
+	}
+
+}

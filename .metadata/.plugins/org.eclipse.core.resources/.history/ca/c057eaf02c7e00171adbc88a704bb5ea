@@ -1,0 +1,38 @@
+package linked;
+
+public class LinkedListsMain {
+
+	public static void main(String[] args) {
+		
+		LinkedList list = new LinkedList();
+		list.add(0);
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(5);
+		list.add(6);
+		list.add(7);
+		list.add(8);
+		list.add(9);
+		list.printAll();
+		LinkedList.Node a = list.get(5);
+		LinkedList.Node last = list.getLast();
+		last.next = a;
+		
+		System.out.println(list.isCyclic());
+		list.printAll();
+		
+		LinkedList second = new LinkedList();
+		second.add(10);
+		second.add(11);
+		second.add(12);
+		LinkedList.Node b = second.getLast();
+		b.next = last;
+		
+		
+		LinkedList.Node aux = list.areOverlapping(second);
+		System.out.println(aux == null ? "nothing" : aux.printData());
+	}
+
+}

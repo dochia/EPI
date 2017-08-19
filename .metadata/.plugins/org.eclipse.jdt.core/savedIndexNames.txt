@@ -1,2 +1,0 @@
-INDEX VERSION 1.130+/Users/alexandra/eclipse-workspace/.metadata/.plugins/org.eclipse.jdt.core
-3168708893.index

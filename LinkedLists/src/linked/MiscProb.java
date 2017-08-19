@@ -47,18 +47,23 @@ public class MiscProb {
 		before.next = slow.next;
 	}
 	
-	public void reverseList(LinkedList list) {
-		LinkedList.Node newHead = list.getFirst();
-		LinkedList.Node oldHead = list.get(1);
-		LinkedList.Node current = null;
+	public LinkedList.Node reverseList(LinkedList.Node head) {
+		LinkedList.Node newHead =  head;
+		LinkedList.Node current = (newHead != null) ? newHead.next : null;
+		LinkedList.Node p = null;
 		
-		while (oldHead != null) {
-			current = oldHead.next;
-			oldHead.next = newHead;
-			newHead = oldHead;
-			oldHead = current;
+		while (current != null) {
+			p = current.next;
+			current.next = newHead;
+			newHead = current;
+			current = p;
 		}
-		list.setHead(newHead);
+		head.next = null;
+		return newHead;
+	}
+	
+	public void reverseList(LinkedList list) {
+		list.setHead(this.reverseList(list.head));
 	}
 	
 	public boolean isPalindrome(LinkedList list) {
@@ -72,6 +77,78 @@ public class MiscProb {
 			q = q.next;
 		}
 		return p == null;
+	}
+	
+	public LinkedList evenOddMerge(LinkedList list) {
+		LinkedList.Node end = list.head;
+		LinkedList.Node  p = list.head, prev = list.head;
+		// find last element of list
+		while (end != null && end.next != null) {
+			end = end.next;
+		}
+		LinkedList.Node oldEnd = end;
+		int i = 0;
+		while (p != null && p != oldEnd) {
+			if (i % 2 == 0) {
+				prev = p;
+			}
+			else {
+				if (p != end)
+					{
+						prev.next = p.next;
+					}
+				end.next = p;
+				p.next = null;
+				p = prev;
+				end = end.next;
+			}
+			i++;
+			p = p.next;
+		}
+		return list;
+	}
+	
+	public LinkedList.Node findMiddle(LinkedList list){
+		LinkedList.Node slow = list.head;
+		LinkedList.Node fast = list.head;
+		while (fast != null) {
+			fast = fast.next;
+			if (fast != null) {
+				slow = slow.next;
+				fast = fast.next;
+			}
+		}
+		return slow;
+	}
+	
+	public LinkedList zippList(LinkedList list) {
+		// find the half of the list, memorize it in slow
+		LinkedList.Node slow = list.head;
+		LinkedList.Node fast = list.head;
+		LinkedList.Node prev = null;
+		while (fast != null && fast.next != null) {
+			fast = fast.next;
+				fast = fast.next;
+				prev = slow;
+				slow = slow.next;
+		}
+		// reverse second half
+		slow = this.reverseList(slow);
+		prev.next = null;
+		
+		// zipp the modified list
+		LinkedList.Node currentFirst = list.head, currentSecond = slow, nextFirst = null, nextSecond;
+		while (currentSecond != null) {
+ 			nextSecond = currentSecond.next;
+			if (currentFirst != null) {
+				nextFirst = currentFirst.next;
+				currentFirst.next = currentSecond;
+			}
+			currentSecond.next = nextFirst != null ? nextFirst : nextSecond;
+			currentFirst = nextFirst;
+			currentSecond = nextSecond;
+			}
+		return list;
 	}
 
 }

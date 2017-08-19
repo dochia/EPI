@@ -87,16 +87,62 @@ public class LinkedListsMain {
 		list.add(3);
 		list.add(2);
 		list.add(1);
-		System.out.println(test.isPalindrome(list));
+		System.out.println(test.isPalindrome(list));	
+	}
+	
+	public static void testEvenOddMerge() {
+		MiscProb test = new MiscProb();
+		LinkedList list = new LinkedList();
+		for (int i = 0; i < 11; i ++) {
+			list.add(i);
+		}
+		list.printAll();
+		test.evenOddMerge(list).printAll();
+	}
+	
+	public static void testZippingList() {
+		MiscProb test = new MiscProb();
+		LinkedList list = new LinkedList();
+		for (int i = 0; i < 10 ; i++) {
+			list.add(i);
+		}
+		list.printAll();
+		test.zippList(list).printAll();
 		
 	}
+
+	public static void testPostingsList() {
+		PostingsList list = new PostingsList();
+		PostingsList.Node a = list.add(5);
+		PostingsList.Node b = list.add(12);
+		PostingsList.Node c = list.add(25);
+		PostingsList.Node d = list.add(30);
+		PostingsList.Node e = list.add(100);
+		PostingsList.Node f = list.add(37);
+		
+		list.printAll();
+		
+		a.setJump(c);
+		b.setJump(d);
+		c.setJump(e);
+		d.setJump(f);
+		e.setJump(a);
+		f.setJump(b);
+		
+		list.printAll();
+		PostingsList copy = list.copy();
+		copy.printAll();
+	}
+	
 	public static void main(String[] args) {
 		//something();
 		//testMedian();
 		//testRemoveKth();
 		//testReverse();
-		testPalindrome();
-		
+		//testPalindrome();
+		//testEvenOddMerge();
+		//testZippingList();
+		testPostingsList();
 	}
 
 }
